@@ -103,7 +103,7 @@ Conversation:
     headers = {
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
         "Content-Type": "application/json",
-        "HTTP-Referer": "http://localhost:5173", 
+        "HTTP-Referer": "https://salesbot-front.onrender.com", 
         "X-Title": "Sales Roleplay Bot"          
     }
 

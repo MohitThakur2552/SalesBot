@@ -173,7 +173,7 @@ Rules:
     headers = {
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
         "Content-Type": "application/json",
-        "HTTP-Referer": "http://localhost:5173", # Optional: Your site URL
+        "HTTP-Referer": "https://salesbot-front.onrender.com", # Optional: Your site URL
         "X-Title": "Sales Roleplay Bot"          # Optional: Your site name
     }
 
