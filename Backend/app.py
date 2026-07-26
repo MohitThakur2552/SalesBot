@@ -1,12 +1,16 @@
-from flask import Flask
+from flask import Flask, app
 from flask_cors import CORS
 from routes.score import score_bp
 from routes.conversation import conversation_bp
 
-app = Flask(__name__)
+# from flask_cors import CORS
 
-CORS(app)
-
+CORS(
+    app,
+    resources={r"/*": {"origins": [
+        "https://salesbot-front.onrender.com/"
+    ]}}
+)
 app.register_blueprint(conversation_bp, url_prefix="/api")
 
 
