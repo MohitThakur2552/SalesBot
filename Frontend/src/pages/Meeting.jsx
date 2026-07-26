@@ -54,8 +54,8 @@ export default function Meeting() {
     <>
       {loading && <Loader />}
 
-      {/* Main Container: Subtle off-white background */}
-      <div className="flex h-screen w-full bg-slate-100/70 overflow-hidden font-sans selection:bg-blue-100 selection:text-blue-900">
+      {/* Main Container: Darker slate background for contrast */}
+      <div className="flex h-screen w-full bg-slate-200 overflow-hidden font-sans selection:bg-blue-200 selection:text-blue-900">
         
         {/* Left Side: Dynamic Video & Controls Area */}
         <div className="flex-1 flex flex-col items-center justify-center p-6 md:p-8 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] h-full overflow-y-auto relative z-10">
@@ -66,23 +66,23 @@ export default function Meeting() {
             <div className="w-full grid lg:grid-cols-2 gap-6 md:gap-8">
               
               {/* Left Card: User Video */}
-              <div className="group relative w-full aspect-[4/3] max-h-[65vh] bg-gradient-to-b from-white to-slate-50/80 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-slate-200/80 p-5 transition-all duration-300 flex flex-col">
-                <div className="absolute top-8 left-8 z-20 flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full border border-slate-200 shadow-sm">
+              <div className="group relative w-full aspect-[4/3] max-h-[65vh] bg-white rounded-3xl shadow-xl hover:shadow-2xl border border-slate-300 p-5 transition-all duration-300 flex flex-col">
+                <div className="absolute top-8 left-8 z-20 flex items-center gap-2 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full border border-slate-300 shadow-sm">
                    <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-                   <span className="text-xs font-semibold text-slate-600 uppercase tracking-wider">You</span>
+                   <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">You</span>
                 </div>
-                <div className="w-full h-full rounded-2xl overflow-hidden bg-slate-900 ring-1 ring-inset ring-slate-900/10 shadow-inner">
+                <div className="w-full h-full rounded-2xl overflow-hidden bg-slate-900 ring-1 ring-inset ring-slate-900/20 shadow-inner">
                   <VideoPanel />
                 </div>
               </div>
               
               {/* Right Card: AI Avatar & Transcript Toggle */}
-              <div className="relative w-full aspect-[4/3] max-h-[65vh] bg-gradient-to-b from-white to-slate-50/80 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-slate-200/80 p-5 transition-all duration-300 flex flex-col">
+              <div className="relative w-full aspect-[4/3] max-h-[65vh] bg-white rounded-3xl shadow-xl hover:shadow-2xl border border-slate-300 p-5 transition-all duration-300 flex flex-col">
                 
                 {/* Advanced Pill Toggle Button */}
                 <button
                   onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                  className="absolute top-8 right-8 z-20 bg-white/95 backdrop-blur-md border border-slate-200/80 shadow-[0_2px_10px_rgb(0,0,0,0.05)] text-slate-700 hover:bg-slate-50 hover:text-slate-900 px-5 py-2.5 rounded-full transition-all duration-300 flex items-center gap-2 font-semibold text-xs tracking-wide uppercase active:scale-95 group"
+                  className="absolute top-8 right-8 z-20 bg-white/95 backdrop-blur-md border border-slate-300 shadow-sm text-slate-900 hover:bg-slate-100 hover:border-slate-400 px-5 py-2.5 rounded-full transition-all duration-300 flex items-center gap-2 font-bold text-xs tracking-wide uppercase active:scale-95 group"
                 >
                   {isSidebarOpen ? 'Close Transcript' : 'Open Transcript'}
                   <svg 
@@ -96,7 +96,8 @@ export default function Meeting() {
                   </svg>
                 </button>
 
-                <div className="w-full h-full flex items-center justify-center rounded-2xl overflow-hidden ring-1 ring-inset ring-slate-900/5 bg-slate-50/50">
+                {/* AI Avatar Wrapper: Added classes to force img/video children to fully cover the div */}
+                <div className="w-full h-full flex items-center justify-center rounded-2xl overflow-hidden ring-1 ring-inset ring-slate-900/10 bg-slate-100 [&_img]:w-full [&_img]:h-full [&_img]:object-cover [&_video]:w-full [&_video]:h-full [&_video]:object-cover [&>*]:w-full [&>*]:h-full [&>*]:object-cover">
                   <AIAvatar status={meetingStatus} />
                 </div>
               </div>
@@ -105,8 +106,8 @@ export default function Meeting() {
 
             {/* Premium Control Panel Dock */}
             <div className="relative mt-2">
-              <div className="absolute -inset-1.5 bg-gradient-to-r from-slate-200 via-white to-slate-200 rounded-full blur-md opacity-40"></div>
-              <div className="relative bg-white/95 backdrop-blur-xl px-10 py-4 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-200/60 flex items-center justify-center w-max max-w-full">
+              <div className="absolute -inset-1.5 bg-gradient-to-r from-slate-300 via-white to-slate-300 rounded-full blur-md opacity-40"></div>
+              <div className="relative bg-white px-10 py-4 rounded-full shadow-xl border border-slate-300 flex items-center justify-center w-max max-w-full">
                 <ControlPanel
                   meetingStatus={meetingStatus}
                   onStartListening={startListening}
@@ -125,20 +126,20 @@ export default function Meeting() {
           }`}
         >
           {/* Floating container rather than edge-to-edge */}
-          <div className="w-[400px] h-[calc(100vh-3rem)] my-6 bg-white/80 backdrop-blur-2xl border border-slate-200/80 shadow-[0_8px_40px_rgb(0,0,0,0.08)] rounded-3xl flex flex-col overflow-hidden">
+          <div className="w-[400px] h-[calc(100vh-3rem)] my-6 bg-white/95 backdrop-blur-3xl border border-slate-300 shadow-2xl rounded-3xl flex flex-col overflow-hidden">
             
-            <div className="px-6 py-5 border-b border-slate-200/60 flex justify-between items-center bg-white/50 backdrop-blur-md">
+            <div className="px-6 py-5 border-b border-slate-300 flex justify-between items-center bg-white/80 backdrop-blur-md">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-blue-50 text-blue-600 rounded-lg">
+                <div className="p-2 bg-blue-100 text-blue-700 rounded-lg">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <h2 className="text-base font-bold text-slate-800 tracking-tight">Live Transcript</h2>
+                <h2 className="text-base font-bold text-slate-900 tracking-tight">Live Transcript</h2>
               </div>
               <button 
                 onClick={() => setIsSidebarOpen(false)}
-                className="text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-all p-2 rounded-full active:scale-95"
+                className="text-slate-500 hover:text-slate-900 hover:bg-slate-200 transition-all p-2 rounded-full active:scale-95"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
