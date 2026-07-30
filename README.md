@@ -232,6 +232,7 @@ GEMINI_API_KEY_1=YOUR_API_KEY
 GEMINI_API_KEY_2=YOUR_API_KEY
 GEMINI_API_KEY_3=YOUR_API_KEY
 GEMINI_API_KEY_4=YOUR_API_KEY
+OPENROUTER_API_KEY=YOUR_API_KEY
 ```
 
 The backend automatically switches to the next available API key if one reaches its quota or becomes temporarily unavailable.
